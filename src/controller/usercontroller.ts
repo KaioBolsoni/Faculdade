@@ -33,6 +33,6 @@ export const updateUser = (req: Request, res: Response) => {
       return res.status(400).send("Todos os campos são obrigatórios.");
     }
 
-    const updatedUser = UserBusiness.updateUserLogic(id, name, age, role);
+    const updatedUser = UserBusiness.updateUser(id, name, age, role);
     res.status(200).send(updatedUser);
 };

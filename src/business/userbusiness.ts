@@ -12,7 +12,7 @@ export const findUsersByAgeRange = (min: number, max: number): User[] => {
 };
 
 
-export const updateUserLogic = (id: string, name: string, age: number, role: "user" | "admin"): User | undefined => {
+export const updateUser = (id: string, name: string, age: number, role: "user" | "admin"): User | undefined => {
   const user = findUserById(id);
   if (user) {
     user.name = name;
