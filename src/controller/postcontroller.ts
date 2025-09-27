@@ -18,7 +18,7 @@ export const createPost = (req: Request, res: Response) => {
     return res.status(400).send("Autor não encontrado.");
   }
 
-  const newPost = PostBusiness.createPostLogic(title, content, authorId as string);
+  const newPost = PostBusiness.createPost(title, content, authorId as string);
   res.status(201).send(newPost);
 };
 
@@ -29,7 +29,7 @@ export const updatePost = (req: Request, res: Response) => {
     }
 
     const { title, content, published } = req.body;
-    const updatedPost = PostBusiness.updatePostLogic(req.params.id, { title, content, published });
+    const updatedPost = PostBusiness.updatePost(req.params.id, { title, content, published });
     res.status(200).send(updatedPost);
 };
 
@@ -41,6 +41,6 @@ export const deletePost = (req: Request, res: Response) => {
         return res.status(400).send("ID do solicitante é obrigatório.");
     }
     
-    const result = PostBusiness.deletePostLogic(id, requesterId);
+    const result = PostBusiness.deletePost(id, requesterId);
     res.status(result.status).send(result.message);
 };

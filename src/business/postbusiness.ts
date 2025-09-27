@@ -2,26 +2,26 @@ import { posts } from "../data/database";
 import { Post } from "../models/postmodels";
 import { findUserById } from "./userbusiness";
 
-// Encontra um post pelo ID
+
 export const findPostById = (id: string): Post | undefined => {
   return posts.find((p) => p.id === id);
 };
 
-// Cria um novo post
-export const createPostLogic = (title: string, content: string, authorId: string): Post => {
+
+export const createPost = (title: string, content: string, authorId: string): Post => {
   const newPost: Post = {
-    id: Date.now().toString(),
+    id: toString(),
     title,
     content,
-    authorId: authorId,
+    authorId,
     published: false,
   };
   posts.push(newPost);
   return newPost;
 };
 
-// Atualiza parcialmente um post
-export const updatePostLogic = (id: string, data: { title?: string; content?: string; published?: boolean }): Post | undefined => {
+
+export const updatePost = (id: string, data: { title?: string; content?: string; published?: boolean }): Post | undefined => {
   const post = findPostById(id);
   if (post) {
     if (data.title) post.title = data.title;
@@ -31,8 +31,8 @@ export const updatePostLogic = (id: string, data: { title?: string; content?: st
   return post;
 };
 
-// Deleta um post com validação de permissão
-export const deletePostLogic = (postId: string, requesterId: string): { success: boolean, message: string, status: number } => {
+
+export const deletePost = (postId: string, requesterId: string): { success: boolean, message: string, status: number } => {
     const postIndex = posts.findIndex((p) => p.id === postId);
     if (postIndex === -1) {
         return { success: false, message: "Post não encontrado.", status: 404 };
